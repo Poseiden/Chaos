@@ -10,7 +10,13 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     // id 'checkstyle'
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
+
+group = 'com.poseiden'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.11'
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -28,8 +34,10 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.1-jre'
 
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation 'org.projectlombok:lombok:1.18.10'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
 

@@ -16,6 +16,7 @@ Spring + Gradle + Dockefile + Travis + Jenkins
 ### FAQ
 
 #### Gitignore
+#### DB(H2)
 #### Jenkinsfile
 #### deployfile
 #### Dockerfile
