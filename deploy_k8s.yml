@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java_program_initial_with_gradle
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java_program_initial_with_gradle
+  template:
+    metadata:
+      labels:
+        app: java_program_initial_with_gradle
+    spec:
+      containers:
+        - name: java_program_initial_with_gradle
+          image: bbos26/java_program_initial_with_gradle
+          env:
+            - name: app_env
+              value: "dev"

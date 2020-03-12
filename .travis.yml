@@ -1,0 +1,35 @@
+sudo: required
+services:
+  - docker
+
+language: java
+install: true
+
+os: linux
+dist: trusty
+jdk: openjdk11
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+jobs:
+  include:
+    - stage: test
+      script: ./gradlew clean test
+    - stage: build 
+      script: 
+        - ./gradlew build
+    # - stage: 
+    #     - build image
+    #   script: 
+    #     - docker build -t bbos26/java_program_initial_with_gradle:${TRAVIS_BUILD_NUMBER} .
+    # - stage: push to dockerhub
+    #   script: 
+    #     - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #     - docker push $DOCKER_USERNAME/java_program_initial_with_gradle:${TRAVIS_BUILD_NUMBER}
