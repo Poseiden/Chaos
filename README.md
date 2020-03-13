@@ -29,3 +29,7 @@ Spring + Gradle + Dockefile + Travis + Jenkins
 #### Dockerhub
 #### Test coverage
 #### CheckStyle
+
+###Feature
+#### Auth
+#### File Upload
