@@ -6,8 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @RequestMapping("/")
-    public String index() {
+    @RequestMapping("/hello")
+    public String hello() {
         return "Greetings from Spring Project Initial With Gradle!";
     }
+
+    @RequestMapping("/security")
+    public String helloWithSecurity() {
+        return "Greeting with " +
+                "security!";
+    }
 }
+

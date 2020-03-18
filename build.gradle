@@ -7,6 +7,7 @@
  */
 
 plugins {
+    id 'idea'
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     // id 'checkstyle'
@@ -22,6 +23,7 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -35,6 +37,14 @@ dependencies {
     implementation 'com.google.guava:guava:28.1-jre'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-jwt:1.1.0.RELEASE'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.5.RELEASE'
+    implementation 'com.h2database:h2:1.4.199'
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     // Use JUnit test framework
     testImplementation('org.springframework.boot:spring-boot-starter-test')
