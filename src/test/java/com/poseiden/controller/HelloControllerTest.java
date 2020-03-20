@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.poseiden.domain.role.Role.ADMIN;
+import static com.poseiden.domain.role.Role.EMPLOYEE;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -61,6 +62,21 @@ public class HelloControllerTest extends APIBaseTest {
                         .header("Authorization", token))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Greeting with security!")));
+    }
+
+    @Test
+    public void should_return_err_msg_when_role_incorrect() throws Exception {
+        UserAccount userAccount = this.userAccountRepo.save(new UserAccount("user", "password", EMPLOYEE));
+
+        String token = tokenUtils.generateToken(new UserAuthorization(userAccount.getUsername(),
+                userAccount.getPassword(), userAccount.getRole()));
+
+        this.unAuthMockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/security")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("Authorization", token))
+                .andExpect(status().isForbidden());
     }
 }
 
