@@ -68,7 +68,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests().
                 antMatchers("/hello").permitAll().
                 antMatchers("/security").hasAnyAuthority(ADMIN.value()).
-                antMatchers("/health").anonymous().
                 anyRequest().authenticated();
 
         http.headers().cacheControl();
