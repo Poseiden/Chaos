@@ -13,8 +13,7 @@ public class HelloController {
 
     @RequestMapping("/security")
     public String helloWithSecurity() {
-        return "Greeting with " +
-                "security!";
+        return "Greeting with security!";
     }
 }
 

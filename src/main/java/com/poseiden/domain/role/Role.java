@@ -1,7 +1,7 @@
 package com.poseiden.domain.role;
 
 public enum Role {
-    Employee("Employee");
+    ADMIN("Admin");
     private String value;
 
     public String value() {

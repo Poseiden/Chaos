@@ -1,7 +1,7 @@
 package com.poseiden.configuration.security;
 
-import com.google.common.collect.Lists;
 import com.poseiden.domain.UserAccount;
+import com.poseiden.repo.UserAccountRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,18 +9,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+    private UserAccountRepo userAccountRepo;
+
+    public UserDetailsServiceImpl(UserAccountRepo userAccountRepo) {
+        this.userAccountRepo = userAccountRepo;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        UserAccount account = new UserAccount("admin", "admin");
+        String errMsg = String.format("No user found with username '%s'.", username);
+        UserAccount account = this.userAccountRepo.findById(username)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(errMsg));
 
-        if (account == null) {
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
-        } else {
-            return new UserAuthorization(
+        return new UserAuthorization(
                     account.getUsername(),
                     account.getPassword(),
-                    Lists.newArrayList());
+                    account.getRole());
         }
-    }
 }

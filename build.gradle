@@ -48,6 +48,9 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.h2database:h2:1.4.199'
+
     testImplementation 'org.projectlombok:lombok:1.18.10'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
 

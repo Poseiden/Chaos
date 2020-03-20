@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.poseiden.domain.role.Role.Employee;
+import static com.poseiden.domain.role.Role.ADMIN;
 
 @Configuration
 @EnableWebSecurity
@@ -67,7 +67,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 and().
                 authorizeRequests().
                 antMatchers("/hello").permitAll().
-                antMatchers("/security").hasAnyAuthority(Employee.value()).
+                antMatchers("/security").hasAnyAuthority(ADMIN.value()).
                 antMatchers("/health").anonymous().
                 anyRequest().authenticated();
 
