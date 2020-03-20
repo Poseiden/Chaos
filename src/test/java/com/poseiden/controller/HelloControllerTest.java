@@ -5,6 +5,7 @@ import com.poseiden.configuration.security.UserAuthorization;
 import com.poseiden.controller.base.APIBaseTest;
 import com.poseiden.domain.UserAccount;
 import com.poseiden.repo.UserAccountRepo;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class HelloControllerTest extends APIBaseTest {
     private TokenUtils tokenUtils;
 
     @Test
-    public void getHelloTest() throws Exception {
+    public void should_return_hello_msg() throws Exception {
         this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -31,12 +32,27 @@ public class HelloControllerTest extends APIBaseTest {
     }
 
     @Test
-    public void getHelloWithAuth() throws Exception {
+    public void should_return_success_msg_when_right_token() throws Exception {
         UserAccount userAccount = this.userAccountRepo.save(new UserAccount("user", "password", ADMIN));
 
         String token = tokenUtils.generateToken(new UserAuthorization(userAccount.getUsername(),
                 userAccount.getPassword(), userAccount.getRole()));
 
+        this.unAuthMockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/security")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("Authorization", token))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Greeting with security!")));
+    }
+
+    @Test
+    @Ignore
+    //todo To drive Global Exception
+    public void should_return_err_msg_when_account_not_found() throws Exception {
+        String token = tokenUtils.generateToken(new UserAuthorization("no this user",
+                "password", ADMIN));
 
         this.unAuthMockMvc.perform(
                 MockMvcRequestBuilders
