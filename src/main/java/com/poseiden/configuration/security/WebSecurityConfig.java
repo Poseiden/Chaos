@@ -20,13 +20,13 @@ import static com.poseiden.domain.role.Role.ADMIN;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService identityService;
 
     private final EntryPointUnauthorizedHandler unauthorizedHandler;
 
-    public WebSecurityConfiguration(EntryPointUnauthorizedHandler unauthorizedHandler, UserDetailsService identityService) {
+    public WebSecurityConfig(EntryPointUnauthorizedHandler unauthorizedHandler, UserDetailsService identityService) {
         this.unauthorizedHandler = unauthorizedHandler;
         this.identityService = identityService;
     }
@@ -66,6 +66,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 and().
                 authorizeRequests().
                 antMatchers("/h2-console/**").permitAll().
+                antMatchers("/swagger-ui.html").permitAll().
+                antMatchers("/swagger-resources/**").permitAll().
+                antMatchers("/webjars/springfox-swagger-ui/**").permitAll().
+                antMatchers("/v2/api-docs").permitAll().
                 antMatchers("/hello").permitAll().
                 antMatchers("/security").hasAnyAuthority(ADMIN.value()).
                 anyRequest().authenticated();
