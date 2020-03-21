@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static com.poseiden.domain.role.Role.ADMIN;
 import static com.poseiden.domain.role.Role.EMPLOYEE;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,6 +78,16 @@ public class HelloControllerTest extends APIBaseTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .header("Authorization", token))
                 .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void generateToken() {
+
+        String token = tokenUtils.generateToken(new UserAuthorization("name",
+                "1234", ADMIN));
+
+        System.out.println(token);
+        assertNotNull(token);
     }
 }
 

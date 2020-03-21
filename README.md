@@ -29,6 +29,7 @@ Spring + Gradle + Dockefile + Travis + Jenkins
 #### Dockerhub
 #### Test coverage
 #### CheckStyle
+#### SWAGGER UI
 
 ### Feature
 #### Auth
