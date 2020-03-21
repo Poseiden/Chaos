@@ -26,7 +26,7 @@ public class HelloControllerTest extends APIBaseTest {
 
     @Test
     public void should_return_hello_msg() throws Exception {
-        this.mockMvc.perform(
+        this.unAuthMockMvc.perform(
                 MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Greetings from Spring Project Initial With Gradle!")));
@@ -50,7 +50,7 @@ public class HelloControllerTest extends APIBaseTest {
 
     @Test
     @Ignore
-    //todo To drive Global Exception
+    //todo 500 issue
     public void should_return_err_msg_when_account_not_found() throws Exception {
         String token = tokenUtils.generateToken(new UserAuthorization("no this user",
                 "password", ADMIN));

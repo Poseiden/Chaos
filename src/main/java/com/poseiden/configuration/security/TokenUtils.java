@@ -9,13 +9,15 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+
 @Component
 public class TokenUtils {
     private final static String secret = "YOUR_SECRET";
 
     public String getUsernameFromToken(String authToken) {
         Claims claimsFromToken = this.getClaimsFromToken(authToken);
-        return claimsFromToken.getSubject();
+        return isNull(claimsFromToken) ? null : claimsFromToken.getSubject();
     }
 
     public boolean validateToken(String authToken, UserDetails userDetails) {

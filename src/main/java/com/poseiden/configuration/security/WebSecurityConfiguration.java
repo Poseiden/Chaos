@@ -57,7 +57,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    //CHECKSTYLE:OFF
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
@@ -73,7 +72,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().cacheControl();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
-    //CHECKSTYLE:ON
 }
 
 
