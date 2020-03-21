@@ -4,9 +4,10 @@
 ### 项目简介
 > 该项目是一个 SpringBoot 项目初始化代码框架，希望做到开箱即用，有效缩短I0时间。
 ### 技术选型
-- SpringBoot 
-- Gradle
-- H2
+- Java 11
+- SpringBoot v2.25
+- Gradle v6.1.1
+- H2 
 - Docker 
 - Travis 
 - Jenkins
