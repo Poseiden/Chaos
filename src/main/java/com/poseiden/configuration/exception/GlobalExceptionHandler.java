@@ -1,4 +1,4 @@
-package com.poseiden.configuration;
+package com.poseiden.configuration.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
