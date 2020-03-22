@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java_program_initial_with_gradle
+  name: Chaos
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: java_program_initial_with_gradle
+      app: Chaos
   template:
     metadata:
       labels:
-        app: java_program_initial_with_gradle
+        app: Chaos
     spec:
       containers:
-        - name: java_program_initial_with_gradle
-          image: bbos26/java_program_initial_with_gradle
+        - name: Chaos
+          image: poseiden/Chaos
           env:
             - name: app_env
               value: "dev"
