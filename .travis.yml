@@ -25,11 +25,10 @@ jobs:
     - stage: build 
       script: 
         - ./gradlew build
-     - stage:
-         - build image
+     - stage: build image
        script:
-         - docker build -t bbos26/java_program_initial_with_gradle:${TRAVIS_BUILD_NUMBER} .
+         - docker build -t poseiden/chaos:${TRAVIS_BUILD_NUMBER} .
      - stage: push to dockerhub
        script:
          - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
-         - docker push $DOCKER_USERNAME/java_program_initial_with_gradle:${TRAVIS_BUILD_NUMBER}
+         - docker push $DOCKER_USERNAME/chaos:${TRAVIS_BUILD_NUMBER}
