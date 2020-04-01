@@ -1,5 +1,5 @@
 # Chaos
-[![Build Status](https://travis-ci.com/Poseiden/spring_project_initial_with_gradle.svg?branch=master)](https://travis-ci.com/Poseiden/spring_project_initial_with_gradle)
+[![Build Status](https://travis-ci.com/Poseiden/Chaos.svg?branch=master)](https://travis-ci.com/Poseiden/Chaos)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ### 项目简介
 > 该项目是一个 SpringBoot 项目初始化代码框架，希望做到开箱即用，有效缩短I0时间。
